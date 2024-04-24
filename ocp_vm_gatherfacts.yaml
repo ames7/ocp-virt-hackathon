@@ -12,7 +12,7 @@
         - name: Gather underlying facts from K8 definition file
           redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ vm_inventory_hostname }}"
-            namespace: default
+            namespace: vmexamples
             wait: true 
           register: ocp_virt_vm_info
     

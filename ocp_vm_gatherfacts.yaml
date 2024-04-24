@@ -1,0 +1,11 @@
+---
+- name: Gather CPU,Disk,and MEM data on running vm
+  hosts: "{{ vvm_inventory_hostname }}"
+  gather_facts: true
+  become: true
+  vars:
+  
+  
+  tasks:
+    -  name: Gather underlying facts from K8 definition file
+       

@@ -18,10 +18,10 @@
     
         - name: Debug ocp vm facts
           ansible.builtin.debug:
-            var: ocp_virt_vm_info['Spec']
+            var: ocp_virt_vm_info['Metadata']
         - name: Debug ocp vm facts
           ansible.builtin.debug:
-            var: ocp_virt_vm_info[0]
+            var: ocp_virt_vm_info['apiVersion']
             
     # We can define specific if we want to narrow it down
         - name: Register Fact to controller Cache

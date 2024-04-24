@@ -1,10 +1,10 @@
 ---
 - name: Gather CPU,Disk,and MEM data on running vm
-  hosts: "{{ vm_inventory_hostname }}",localhost
+  hosts: "{{ vm_inventory_hostname }}":localhost
   gather_facts: true
   become: true
   vars:
-     # vm_inventory_homename
+     # vm_inventory_hostname
   
   
   tasks:

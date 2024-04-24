@@ -1,0 +1,5 @@
+---
+collections:
+  - redhat.openshift
+  - redhat.openshift_virtualization
+  - kubevirt.vm

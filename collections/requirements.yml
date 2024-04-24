@@ -1,4 +1,4 @@
 ---
 collections:
 - name: redhat.openshift
-- name: redhat.openshift_virtualizatio
+- name: redhat.openshift_virtualization

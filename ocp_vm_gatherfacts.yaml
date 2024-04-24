@@ -18,7 +18,7 @@
     
         - name: Debug ocp vm facts
           ansible.builtin.debug:
-            var: ocp_virt_vm_info['resources'][0]
+            var: ocp_virt_vm_info['resources']['0']['spec']
         - name: Debug ocp vm facts
           ansible.builtin.debug:
             msg: "{{ ocp_virt_vm_info['resources']['metadata'] }}"

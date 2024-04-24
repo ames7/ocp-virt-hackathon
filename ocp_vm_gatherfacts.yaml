@@ -8,7 +8,7 @@
   
   
   tasks:
-    - block
+    - block:
         - name: Gather underlying facts from K8 definition file
           redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ vm_inventory_hostname }}"

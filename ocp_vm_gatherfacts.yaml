@@ -15,9 +15,9 @@
             namespace: default
             wait: true 
           register: ocp_virt_vm_info
-       
+    
         - name: Debug ocp vm facts
-          ansbile.builtin.debug:
+          ansible.builtin.debug:
              var: ocp_virt_vm_info 
           verbosity: 2
 

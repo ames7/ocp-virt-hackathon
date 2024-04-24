@@ -1,11 +1,28 @@
 ---
 - name: Gather CPU,Disk,and MEM data on running vm
-  hosts: "{{ vvm_inventory_hostname }}"
+  hosts: "{{ vm_inventory_hostname }}",localhost
   gather_facts: true
   become: true
   vars:
+     # vm_inventory_homename
   
   
   tasks:
-    -  name: Gather underlying facts from K8 definition file
-       
+    - block
+      -  name: Gather underlying facts from K8 definition file
+         redhat.openshift_virtualization.kubevirt_vm_info:
+            name: "{{ vm_inventory_hostname }}"
+            namespace: default #varibalize?
+            wait: true 
+         register: ocp_virt_vm_info
+         
+         
+      -  name: Debug ocp vm facts
+         ansbile.builtin.debug:
+            var: ocp_virt_vm_info | nice_to_yaml
+         verbosity: 2
+  
+      -  name: Register Fact to controller Cache
+         ansible.builtin.set_fact:
+           ocp_vm_config_yaml: "{{ ocp_virt_vm_info }}"
+      delegate_to: localhost    

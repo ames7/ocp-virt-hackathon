@@ -9,20 +9,20 @@
   
   tasks:
     - block
-      -  name: Gather underlying facts from K8 definition file
-         redhat.openshift_virtualization.kubevirt_vm_info:
+        - name: Gather underlying facts from K8 definition file
+          redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ vm_inventory_hostname }}"
             namespace: default
             wait: true 
-         register: ocp_virt_vm_info
+          register: ocp_virt_vm_info
        
-      -  name: Debug ocp vm facts
-         ansbile.builtin.debug:
-            var: ocp_virt_vm_info 
-         verbosity: 2
+        - name: Debug ocp vm facts
+          ansbile.builtin.debug:
+             var: ocp_virt_vm_info 
+          verbosity: 2
 
     # We can define specific if we want to narrow it down
-      -  name: Register Fact to controller Cache 
-         ansible.builtin.set_fact:
-           ocp_vm_config_yaml: "{{ ocp_virt_vm_info }}"
+        - name: Register Fact to controller Cache
+          ansible.builtin.set_fact:
+            ocp_vm_config_yaml: "{{ ocp_virt_vm_info }}"
       delegate_to: localhost 

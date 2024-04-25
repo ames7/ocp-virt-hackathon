@@ -18,10 +18,10 @@
     
         - name: Debug ocp vm facts
           ansible.builtin.debug:
-            var: ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']
+            var: ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']
         - name: Debug ocp vm facts
           ansible.builtin.debug:
-            msg: "{{ ocp_virt_vm_info['resources'][0]['spec']['template'] }}"
+            msg: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests'] }}"
             
     # We can define specific if we want to narrow it down
         - name: Register Fact to controller Cache

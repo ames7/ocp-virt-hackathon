@@ -9,14 +9,14 @@
   
   
   tasks:
-    - name: Stop {{ vm_inventory_hostname }} in  {{ vm_namespace }} 
+    - name: Stop {{ vm_inventory_hostname }} in {{ vm_namespace }} 
       redhat.openshift_virtualization.kubevirt_vm:
         state: present
         validate_certs: false
         name: "{{ vm_inventory_hostname }}"
         namespace: "{{ vm_namespace }}"
         running: false 
-      when: "{{ wantedstate }} == Stop"  
+      when: wantedstate == "Stop"  
     
     - name: Start {{ vm_inventory_hostname }} in  {{ vm_namespace }} 
       redhat.openshift_virtualization.kubevirt_vm:
@@ -25,7 +25,7 @@
         name: "{{ vm_inventory_hostname }}"
         namespace: "{{ vm_namespace }}"
         running: true 
-      when: "{{ wantedstate }} == Start"
+      when: wantedstate == "Start"
              
  
   

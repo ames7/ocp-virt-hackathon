@@ -9,14 +9,14 @@
   
   
   tasks:
-    - name: Update VM
+    - name: Update {{ vm_inventory_hostname }} in  {{ vm_inventory_hostname }} with {{ ocp_vm_cpu_cores }} cores and {{ ocp_vm_cpu_sockets }} sockets
       redhat.openshift_virtualization.kubevirt_vm:
         state: present
         validate_certs: false
         name: "{{ vm_inventory_hostname }}"
         namespace: "{{ vm_namespace }}"
         labels:
-           automated: byansible
+           automated: by-ansible
         spec: 
           domain:
            cpu: 

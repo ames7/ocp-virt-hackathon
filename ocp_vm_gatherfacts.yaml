@@ -1,5 +1,5 @@
 ---
-- name: Gather CPU,Disk,and MEM data on running vm
+- name: Gather CPU,Disk,and MEM data about VM at the OCP_VIRT Level 
   hosts: localhost,{{ vm_inventory_hostname }}
   gather_facts: false
   become: false
@@ -43,5 +43,4 @@
 
         
       delegate_to: localhost 
-      run_once: true
- 
+      run_once: true 

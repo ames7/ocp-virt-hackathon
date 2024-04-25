@@ -10,13 +10,13 @@
   
   tasks:
     - name: Update VM
-       redhat.openshift_virtualization.kubevirt_vm:
-         state: present
-         validate_certs: false
-         name: database
-         namespace: vmexamples
-         labels:
-            automated: byansible
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        validate_certs: false
+        name: "{{ vm_inventory_hostname }}"
+        namespace: "{{ vm_namespace }}"
+        labels:
+           automated: byansible
        
        #  spec: 
        #    domain:

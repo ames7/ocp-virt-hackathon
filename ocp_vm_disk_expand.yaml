@@ -1,6 +1,6 @@
 ---
 - name: Expand disk space on a VM 
-  hosts: localhost,{{ vm_inventory_hostname }}
+  hosts: localhost
   gather_facts: false
   become: false
   vars: 
@@ -10,13 +10,13 @@
 
   tasks:
 
-- gather pvc claim name 
-#expand pvc claim
+# gather pvc claim name 
+# expand pvc claim
     - name: expand PVC claim
       community.kubevirt.kubevirt_pvc:
         name: 'move-webapp-vmware-vm-1554529-6snxz'
         namespace: 'vmexamples'
         size: '21Gi'
 
-- gather facts from OS for expanding disk 
-- expand VM OS 
+# gather facts from OS for expanding disk 
+# expand VM OS 

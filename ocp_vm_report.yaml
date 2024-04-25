@@ -63,15 +63,18 @@
           - name: reportspod
             image: quay.io/samander/nginx-report-base:latest
             volumeMounts: 
-            - mountPath: /var/report
-              name: reportspvc
-
+            - name: reportspvc
+              mountPath: /var/report
+              
             ports: 
               - containerPort: 8080
-            volumes: 
-              - name: reportspvc
-                #persistentVolumeClaim: 
-                 # claimName: reportspvc
+          volumes: 
+            - name: reportspvc
+              emptyDir:
+                sizeLimit: 200Mi
+              
+              #persistentVolumeClaim: 
+               # claimName: reportspvc
 
 
   - name: Create a service for Reports Pod 
@@ -96,23 +99,7 @@
               port: 80
               targetPort: 8080
             
-  - name: Create a PVC Claim for Reports Pod 
-    kubernetes.core.k8s:
-      state: present
-      definition:
-        apiVersion: v1
-        kind: PersistentVolumeClaim
-        metadata:
-          name: reportspvc
-          namespace: vmexamples
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          volumeMode: Filesystem
-          resources:
-            requests:
-              storage: 500Mi
-          
+        
 
           
 

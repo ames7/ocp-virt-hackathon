@@ -1,13 +1,13 @@
 - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ ocp_vm_cpu_cores }} cores and {{ ocp_vm_cpu_sockets }}
-      redhat.openshift_virtualization.kubevirt_vm:
-        state: present
-        validate_certs: false
-        name: "{{ vm_inventory_hostname }}"
-        namespace: "{{ vm_namespace }}"
-        labels:
-           automated: by-ansible
-        spec: 
-          domain:
-           cpu: 
-              cores: "{{ ocp_vm_cpu_cores }}"
-              sockets: "{{ ocp_vm_cpu_sockets }}"
+  redhat.openshift_virtualization.kubevirt_vm:
+    state: present
+    validate_certs: false
+    name: "{{ vm_inventory_hostname }}"
+    namespace: "{{ vm_namespace }}"
+    labels:
+       automated: by-ansible
+    spec: 
+      domain:
+       cpu: 
+          cores: "{{ ocp_vm_cpu_cores }}"
+          sockets: "{{ ocp_vm_cpu_sockets }}"

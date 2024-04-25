@@ -38,6 +38,12 @@
     ansible.builtin.debug:
       var: volname['resources'][0]['spec']['volumeName']
 
+  - name: Setfact 
+    ansible.builtin.set_fact:
+      volunme_name: volname['resources'][0]['spec']['volumeName']
+
+
+
   - name: Create a pod for Reports
     kubernetes.core.k8s:
       state: present
@@ -60,7 +66,7 @@
             ports: 
               - containerPort: 8080
             volumes: 
-              - name: reportvol
+              - name: "{{ volume_name }}"
                 persistentVolumeClaim: 
                   claimName: reportspvc
 

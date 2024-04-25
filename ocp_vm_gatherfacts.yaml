@@ -12,8 +12,7 @@
         - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
           redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ ocp_vm_hostname }}"
-            namespace: "{{ ocp_vm_namespace }}"
-            wait: true 
+            namespace: "{{ ocp_vm_namespace }}" 
           register: ocp_virt_vm_info
     
         - name: Debug ocp vm facts

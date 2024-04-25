@@ -21,5 +21,6 @@
           domain:
            cpu: 
               cores: "{{ ocp_vm_cpu_cores }}"
+              sockets: "{{ ocp_vm_cpu_sockets }}"
     
     

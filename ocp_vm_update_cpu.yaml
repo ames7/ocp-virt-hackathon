@@ -21,8 +21,8 @@
            cpu: 
               cores: "{{ ocp_vm_cpu_cores }}"
               sockets: "{{ ocp_vm_cpu_sockets }}"
-    - name: Include Reboot Playbook if needed
-      ansible.builtin.import_playbook: ocp_vm_restart.yaml
-      vars:
-        wantedstate: Reboot
-      when: reboot_now == "yes"  
+- name: Include Reboot Playbook if needed
+  ansible.builtin.import_playbook: ocp_vm_restart.yaml
+  vars:
+    wantedstate: Reboot
+  when: reboot_now == "yes"  

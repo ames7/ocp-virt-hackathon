@@ -32,11 +32,11 @@
      kind: PersistentVolumeClaim
      name: reportspvc
      namespace: vmexamples 
-    register: volname 
+    register: volname
 
   - name: Debug volume name facts
     ansible.builtin.debug:
-      var: volname 
+      var: volname['resources']['spec']['volumeName'] 
 
   - name: Create a pod for Reports
     kubernetes.core.k8s:

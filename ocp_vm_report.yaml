@@ -23,11 +23,11 @@
           resources:
             requests:
               storage: 500Mi
-    register: vol-name
+    register: volname
 
   - name: Debug volume name facts
     ansible.builtin.debug:
-      var: vol-name 
+      var: volname 
 
 
   - name: Create a pod for Reports

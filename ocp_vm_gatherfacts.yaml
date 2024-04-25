@@ -27,7 +27,8 @@
         - name: Register Fact to controller Cache
           ansible.builtin.set_fact:
             ocp_cfg_cpu: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu'] }}"
+            cacheable: yes
           delegate_to: "{{ vm_inventory_hostname }}"  
           delegate_facts: true
-          cacheable: yes
+        
       delegate_to: localhost 

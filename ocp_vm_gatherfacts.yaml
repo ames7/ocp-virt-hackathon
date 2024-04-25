@@ -17,7 +17,7 @@
     
         - name: Debug ocp vm facts
           ansible.builtin.debug:
-            var: ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistantVolumeClaim']['claimName']
+            var: ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
             verbosity: 1
         - name: Debug ocp vm facts
           ansible.builtin.debug:

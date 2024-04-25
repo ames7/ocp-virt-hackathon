@@ -1,0 +1,31 @@
+---
+- name: OCP_VM_State Control  
+  hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+     # vm_inventory_hostname
+     # vm_namespace
+  
+  
+  tasks:
+    - name: Stop {{ vm_inventory_hostname }} in  {{ vm_namespace }} 
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        validate_certs: false
+        name: "{{ vm_inventory_hostname }}"
+        namespace: "{{ vm_namespace }}"
+        running: false 
+      when: "{{ wantedstate }} == Stop"  
+    
+    - name: Start {{ vm_inventory_hostname }} in  {{ vm_namespace }} 
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        validate_certs: false
+        name: "{{ vm_inventory_hostname }}"
+        namespace: "{{ vm_namespace }}"
+        running: true 
+      when: "{{ wantedstate }} == Start"
+             
+ 
+  

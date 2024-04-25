@@ -14,7 +14,7 @@
         apiVersion: v1
         kind: Pod
         metadata:
-          name: "reportspod-1"
+          name: reportspod-1
           namespace: vmexamples
           labels:
             app: reportspod
@@ -25,13 +25,13 @@
             image: quay.io/samander/nginx-report-base:latest
             ports: 
               - containerPort: 8080
-            volumeMounts: 
-            - mountPath: "/reports:/var/report:Z"
-              name: report
-          volumes: 
-          - name: report-volume
-            emptyDir: 
-              sizelimit: 500Mi
+          #   volumeMounts: 
+          #   - mountPath: 
+          #     name: report
+          # volumes: 
+          # - name: report-volume
+          #   emptyDir: 
+          #     sizelimit: 500Mi
             
 
   #  - name: Launch Container and Create directory for Reports

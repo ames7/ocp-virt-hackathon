@@ -4,11 +4,10 @@
   gather_facts: false
   become: false
   vars:
-    # pvc_name
-    # vmexamples  
+    ocp_virt_vm_disk_claimname: "{{ disk_claimname }}"
     ocp_vm_namespace: "{{ vm_inventory_hostname | split ('-') | first }}"
     ocp_vm_hostname: "{{ vm_inventory_hostname | split ('-') | last }}"
-    # size 
+    ocp_vm_disk_size: "{{ disk_size }}"
 
   tasks:
 
@@ -29,9 +28,6 @@
 # expand pvc claim
     - name: expand PVC claim
       community.kubevirt.kubevirt_pvc:
-        name: 'move-webapp-vmware-vm-1554529-6snxz'
-        namespace: 'vmexamples'
-        size: '21Gi'
-
-# gather facts from OS for expanding disk 
-# expand VM OS 
+        name: "{{ ocp_virt_vm_disk_claimname }}"
+        namespace: "{{ ocp_vm_namespace }}"
+        size: "{{ ocp_vm_disk_size }}"

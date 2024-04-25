@@ -17,10 +17,9 @@
         namespace: "{{ vm_namespace }}"
         labels:
            automated: byansible
-       
-       #  spec: 
-       #    domain:
-       #     cpu: 
-       #         cores: "{{ ocp_vm_cpu_cores }}"
+        spec: 
+          domain:
+           cpu: 
+              cores: "{{ ocp_vm_cpu_cores }}"
     
     

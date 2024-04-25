@@ -13,9 +13,12 @@
        redhat.openshift_virtualization.kubevirt_vm:
          name: "{{ vm_inventory_hostname }}"
          namespace: "{{ vm_namespace }}"
-         spec: 
-           domain:
-              cpu: 
-                cores: "{{ ocp_vm_cpu_cores }}"
+         labels:
+            automated: byansible
+       
+       #  spec: 
+       #    domain:
+       #     cpu: 
+       #         cores: "{{ ocp_vm_cpu_cores }}"
     
     

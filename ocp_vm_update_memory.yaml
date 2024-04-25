@@ -1,0 +1,25 @@
+---
+- name: Update OCP_VM_Memory
+  hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+     # vm_inventory_hostname
+     # vm_namespace
+  
+  
+  tasks:
+    - name: Update {{ vm_inventory_hostname }} in  {{ vm_inventory_hostname }} with {{ ocp_vm_memory }} 
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        validate_certs: false
+        name: "{{ vm_inventory_hostname }}"
+        namespace: "{{ vm_namespace }}"
+        labels:
+           automated: by-ansible
+        spec: 
+          domain:
+           resources: 
+              requests:
+                memory "{{ ocp_vm_memory }}"
+                

@@ -61,8 +61,9 @@
           - name: reportspod
             image: quay.io/samander/nginx-report-base:latest
             volumeMounts: 
-             - mountPath: 
-               name: "/var/report"
+            - mountPath:  "/var/report"
+              name: "{{ volume_name }}"
+
             ports: 
               - containerPort: 8080
             volumes: 

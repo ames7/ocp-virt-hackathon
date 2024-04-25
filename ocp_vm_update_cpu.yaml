@@ -6,7 +6,10 @@
   vars:
      # vm_inventory_hostname
      # vm_namespace
-  
+- import_playbook: ocp_vm_restart.yaml
+  vars:
+     wantedstate: Reboot
+  when: reboot_now == "yes"
   
   tasks:
     - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ ocp_vm_cpu_cores }} cores and {{ ocp_vm_cpu_sockets }}
@@ -23,3 +26,4 @@
               cores: "{{ ocp_vm_cpu_cores }}"
               sockets: "{{ ocp_vm_cpu_sockets }}"
   
+    - 

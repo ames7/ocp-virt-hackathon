@@ -23,6 +23,7 @@
           resources:
             requests:
               storage: 500Mi
+      wait: yes
     register: volname
 
   - name: Debug volume name facts

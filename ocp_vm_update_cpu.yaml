@@ -1,0 +1,22 @@
+---
+- name: Update OCP_VM_CPUS
+  hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+     # vm_inventory_hostname
+     # vm_namespace
+  
+  
+  tasks:
+    - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
+       redhat.openshift_virtualization.kubevirt_vm:
+         name: "{{ vm_inventory_hostname }}"
+         namespace: "{{ vm_namespace }}"
+         spec: 
+           domain:
+              cpu: 
+                - cores "{{ ocp_vm_cpus_cores }}"
+                - sockets "{{ ocp_vm_cpu_sockets }}"
+        
+    

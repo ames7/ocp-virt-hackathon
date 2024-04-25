@@ -34,6 +34,14 @@
             cacheable: yes
           delegate_to: "{{ vm_inventory_hostname }}"  
           delegate_facts: true
+        - name: Your VM  {{ ocp_vm_update_cpu.yaml }} has the following SPECS
+          ansible.builtin.debug:
+            msg: 
+            - "CPU_SOCKETS: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
+            - "CPU_CORES: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
+            - "MEMORY: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
+
+
         
       delegate_to: localhost 
       run_once: true

@@ -13,8 +13,8 @@
        redhat.openshift_virtualization.kubevirt_vm:
          state: present
          validate_certs: false
-         name: "{{ vm_inventory_hostname }}"
-         namespace: "{{ vm_namespace }}"
+         name: database
+         namespace: vmexamples
          labels:
             automated: byansible
        

@@ -40,7 +40,7 @@
 
   - name: Setfact 
     ansible.builtin.set_fact:
-      volunme_name: volname['resources'][0]['spec']['volumeName']
+      volume_name: volname['resources'][0]['spec']['volumeName']
 
 
 

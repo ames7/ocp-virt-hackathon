@@ -46,15 +46,15 @@
           containers:
           - name: reportspod
             image: quay.io/samander/nginx-report-base:latest
-             volumeMounts: 
+            volumeMounts: 
              - mountPath: 
                name: "/var/report"
             ports: 
               - containerPort: 8080
-           volumes: 
-             - name: reportvol
-               persistentVolumeClaim: 
-                claimName: reportspvc
+            volumes: 
+              - name: reportvol
+                persistentVolumeClaim: 
+                  claimName: reportspvc
 
 
   - name: Create a service for Reports Pod 

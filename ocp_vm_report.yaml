@@ -25,7 +25,7 @@
             image: quay.io/samander/nginx-report-base:latest
             volumeMounts: 
             - mountPath: 
-              name: report
+              name: "/var/report"
             ports: 
               - containerPort: 8080
           volumes: 

@@ -9,8 +9,10 @@
   
   
   tasks:
-    - name: Update {{ vm_inventory_hostname }} in {{vm_namespace}} with {{ ocp_vm_cpu_cores }} and {{ ocp_vm_cpu_sockets }}
+    - name: Update VM
        redhat.openshift_virtualization.kubevirt_vm:
+         state: present
+         validate_certs: false
          name: "{{ vm_inventory_hostname }}"
          namespace: "{{ vm_namespace }}"
          labels:

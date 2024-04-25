@@ -9,7 +9,7 @@
   
   tasks:
     - block:
-        - name: Gather underlying facts from K8 definition file
+        - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
           redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ vm_inventory_hostname }}"
             namespace: vmexamples
@@ -25,7 +25,7 @@
             msg: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
             verbosity: 1
     # We can define specific if we want to narrow it down
-        - name: Register Fact to controller Cache
+        - name: Register facts of {{ vm_inventory_hostname }} to controller fact cache
           ansible.builtin.set_fact:
             ocp_cfg_cpu_cores: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
             ocp_cfg_cpu_sockets: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"

@@ -4,8 +4,7 @@
   gather_facts: false
   become: false
   vars:
-     # vm_inventory_hostname
-     # vm_namespace
+     vm_namespace2: "{{ vm_inventory_hostname | split ('-') | first }}"
   
   
   tasks:
@@ -13,7 +12,7 @@
         - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
           redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ vm_inventory_hostname }}"
-            namespace: "{{ vm_namespace }}"
+            namespace: "{{ vm_namespace2 }}"
             wait: true 
           register: ocp_virt_vm_info
     

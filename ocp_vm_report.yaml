@@ -24,12 +24,19 @@
             requests:
               storage: 500Mi
       wait: yes
-    register: volname
+    #register: volname
+
+  - name: Get an PVC Claim Info
+    kubernetes.core.k8s_info:
+     api_version: v1
+     kind: PersistentVolumeClaim
+     name: reportspvc
+     namespace: vmexamples 
+    register: volname 
 
   - name: Debug volume name facts
     ansible.builtin.debug:
       var: volname 
-
 
   - name: Create a pod for Reports
     kubernetes.core.k8s:

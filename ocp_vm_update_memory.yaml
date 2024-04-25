@@ -21,5 +21,5 @@
           domain:
            resources: 
               requests:
-                memory "{{ ocp_vm_memory }}"
+                memory: "{{ ocp_vm_memory }}"
                 

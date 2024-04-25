@@ -1,6 +1,6 @@
 ---
 - name: OCP VM Report
-  hosts: all
+  hosts: localhost
   gather_facts: false
   become: false
   #vars:

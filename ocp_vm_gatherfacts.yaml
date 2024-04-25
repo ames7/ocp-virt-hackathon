@@ -29,7 +29,7 @@
             ocp_cfg_cpu_cores: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
             ocp_cfg_cpu_sockets: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
             ocp_cfg_memory: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
-            ocp_cfg_disk0: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['volume']['name'] }}"
+            ocp_cfg_disk0: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
             cacheable: yes
           delegate_to: "{{ vm_inventory_hostname }}"  
           delegate_facts: true
@@ -39,7 +39,7 @@
             - "CPU_SOCKETS: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
             - "CPU_CORES: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
             - "MEMORY: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
-            - "DISK0: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'] }}"
+            - "DISK0: {{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
 
 
         

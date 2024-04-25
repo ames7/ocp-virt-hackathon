@@ -26,7 +26,8 @@
     # We can define specific if we want to narrow it down
         - name: Register Fact to controller Cache
           ansible.builtin.set_fact:
-            ocp_cfg_cpu: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu'] }}"
+            ocp_cfg_cpu_cores: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
+            ocp_cfg_cpu_sockets: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
             cacheable: yes
           delegate_to: "{{ vm_inventory_hostname }}"  
           delegate_facts: true

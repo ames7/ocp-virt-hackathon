@@ -8,4 +8,4 @@
      # vm_namespace
 
   roles:
-   - role: osv_vm_update_cpu
+   - role: osv_vm_state_control

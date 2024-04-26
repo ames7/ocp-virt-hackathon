@@ -1,0 +1,14 @@
+---
+- name: Update OCP_VM_CPUS
+  hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+    #required vars
+    #vm_inventory_hostname:
+    #vm_namespace
+    #osv_vm_cpu_cores
+    #osv_vm_cpu_sockets
+   
+  roles:
+    - role: osv_vm_update_cpu

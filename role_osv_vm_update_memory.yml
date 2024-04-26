@@ -1,5 +1,5 @@
 ---
-- name: Update OCP_VM_CPUS
+- name: Update OCP_VM_MEMORYS
   hosts: localhost
   gather_facts: false
   become: false

@@ -1,6 +1,6 @@
 ---
-- name: Update OCP_VM_CPUS
-  hosts: localhost
+- name: Expand disk space on a VM 
+  hosts: localhost,{{ vm_inventory_hostname }}
   gather_facts: false
   become: false
   vars:

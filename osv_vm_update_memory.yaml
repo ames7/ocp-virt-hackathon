@@ -9,7 +9,7 @@
   
   
   tasks:
-    - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ ocp_vm_memory }} 
+    - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ osv_vm_memory }} 
       redhat.openshift_virtualization.kubevirt_vm:
         state: present
         validate_certs: false
@@ -21,5 +21,5 @@
           domain:
            resources: 
               requests:
-                memory: "{{ ocp_vm_memory }}"
+                memory: "{{ osv_vm_memory }}"
                 

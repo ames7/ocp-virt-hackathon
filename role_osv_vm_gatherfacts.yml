@@ -1,0 +1,11 @@
+--- 
+- name: Gather CPU,Disk,and MEM data about VM at the OCP_VIRT Level 
+  hosts: localhost,{{ vm_inventory_hostname }}
+  gather_facts: false
+  become: false
+  vars:
+     osv_vm_namespace: "{{ vm_inventory_hostname | split ('-') | first }}"
+     osv_vm_hostname: "{{ vm_inventory_hostname | split ('-') | last }}"
+   
+  roles:
+    - role: osv_vm_gatherfacts

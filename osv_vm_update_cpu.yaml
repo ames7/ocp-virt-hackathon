@@ -8,7 +8,7 @@
      # vm_namespace
   
   tasks:
-    - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ ocp_vm_cpu_cores }} cores and {{ ocp_vm_cpu_sockets }}
+    - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ osv_vm_cpu_cores }} cores and {{ osv_vm_cpu_sockets }}
       redhat.openshift_virtualization.kubevirt_vm:
         state: present
         validate_certs: false
@@ -19,5 +19,5 @@
         spec: 
           domain:
            cpu: 
-              cores: "{{ ocp_vm_cpu_cores }}"
-              sockets: "{{ ocp_vm_cpu_sockets }}"
+              cores: "{{ osv_vm_cpu_cores }}"
+              sockets: "{{ osv_vm_cpu_sockets }}"

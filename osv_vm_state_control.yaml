@@ -1,5 +1,5 @@
 ---
-- name: OCP_VM_State Control  
+- name: OSV_VM_State Control  
   hosts: localhost
   gather_facts: false
   become: false

@@ -11,4 +11,4 @@
     #osv_vm_cpu_sockets
    
   roles:
-    - role: osv_vm_update_cpu
+    - role: osv_vm_update_memory

@@ -1,0 +1,13 @@
+    - name: Update {{ vm_inventory_hostname }} in  {{ vm_namespace }} with {{ osv_vm_memory }} 
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        validate_certs: false
+        name: "{{ vm_inventory_hostname }}"
+        namespace: "{{ vm_namespace }}"
+        labels:
+           automated: by-ansible
+        spec: 
+          domain:
+           resources: 
+              requests:
+                memory: "{{ osv_vm_memory }}"

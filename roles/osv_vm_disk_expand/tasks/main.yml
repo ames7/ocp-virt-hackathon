@@ -1,20 +1,19 @@
 # gather pvc claim name 
-    - block:
-       - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
-         redhat.openshift_virtualization.kubevirt_vm_info:
-            name: "{{ osv_vm_hostname }}"
-            namespace: "{{ osv_vm_namespace }}" 
-         register: osv_virt_vm_info
-   
-       - name: Set claim name fact
-         ansible.buitlin.set_fact:
-            osv_virt_vm_disk_claimname: osv_virt_vm_info ['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
-      delegate_to: localhost
-      run_once: true       
-    
+- block:
+   - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
+     redhat.openshift_virtualization.kubevirt_vm_info:
+        name: "{{ osv_vm_hostname }}"
+        namespace: "{{ osv_vm_namespace }}" 
+     register: osv_virt_vm_info
+   - name: Set claim name fact
+     ansible.buitlin.set_fact:
+        osv_virt_vm_disk_claimname: osv_virt_vm_info ['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
+  delegate_to: localhost
+  run_once: true       
+
 # expand pvc claim
-    - name: expand PVC claim
-      community.kubevirt.kubevirt_pvc:
-        name: "{{ osv_virt_vm_disk_claimname }}"
-        namespace: "{{ osv_vm_namespace }}"
-        size: "{{ osv_vm_disk_size }}"
+- name: expand PVC claim
+  community.kubevirt.kubevirt_pvc:
+    name: "{{ osv_virt_vm_disk_claimname }}"
+    namespace: "{{ osv_vm_namespace }}"
+    size: "{{ osv_vm_disk_size }}"

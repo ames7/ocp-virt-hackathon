@@ -9,6 +9,7 @@
    - name: debug vars
      ansible.builtin.debug:
        var: osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
+       verbosity: 2
 
    - name: Set claim name fact
      ansible.builtin.set_fact:
@@ -17,7 +18,8 @@
    - name: debug var
      ansible.builtin.debug:
        var: osv_virt_vm_disk_claimname
-   
+       verbosity: 2
+          
    - name: expand PVC claim
      community.kubevirt.kubevirt_pvc:
        name: "{{ osv_virt_vm_disk_claimname }}"

@@ -1,0 +1,11 @@
+---
+- name: OSV_VM_State Control  
+  hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+     # vm_inventory_hostname
+     # vm_namespace
+
+  roles:
+   - role: osv_vm_update_cpu

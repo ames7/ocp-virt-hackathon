@@ -30,8 +30,6 @@
             - "CPU_CORES: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
             - "MEMORY: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
             - "DISK0: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
-
-
-        
-      delegate_to: localhost 
-      run_once: true 
+      
+  delegate_to: localhost 
+  run_once: true 

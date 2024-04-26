@@ -6,7 +6,7 @@
        namespace: "{{ osv_vm_namespace }}" 
      register: osv_virt_vm_info
 
-   - name: debug vars:
+   - name: debug vars
      ansible.builtin.debug:
        var: osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
 

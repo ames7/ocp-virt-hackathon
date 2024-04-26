@@ -13,7 +13,7 @@
           redhat.openshift_virtualization.kubevirt_vm_info:
             name: "{{ osv_vm_hostname }}"
             namespace: "{{ osv_vm_namespace }}" 
-          register: ocp_virt_vm_info
+          register: osv_virt_vm_info
     
         - name: Debug osv vm facts
           ansible.builtin.debug:
@@ -27,7 +27,7 @@
         - name: Register facts of {{ vm_inventory_hostname }} to controller fact cache
           ansible.builtin.set_fact:
             osv_cfg_cpu_cores: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
-            osv_cfg_cpu_sockets: "{{ ocp_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
+            osv_cfg_cpu_sockets: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
             osv_cfg_memory: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
             osv_cfg_disk0: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
             cacheable: yes

@@ -6,9 +6,9 @@
        namespace: "{{ osv_vm_namespace }}" 
      register: osv_virt_vm_info
      
-   - name: Set claim name fact
-     ansible.builtin.set_fact:
-       osv_virt_vm_disk_claimname: '{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}'
+#   - name: Set claim name fact
+#     ansible.builtin.set_fact:
+#       osv_virt_vm_disk_claimname: '{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}'
   delegate_to: localhost
   run_once: true       
 

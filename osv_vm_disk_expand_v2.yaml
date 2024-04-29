@@ -44,8 +44,8 @@
                 name: "{{ osv_virt_vm_disk_claimname }}"
                 namespace: "{{ osv_vm_namespace }}"
               spec:
-                status:
-                  capacity:
+                resources:
+                  requests:
                     storage: "{{ osv_vm_disk_size }}"
 
 #       - name: expand PVC claim

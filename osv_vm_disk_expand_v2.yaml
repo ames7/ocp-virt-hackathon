@@ -39,7 +39,7 @@
             state: patched
             definition:
               kind: persistentVolumeClaim
-              api_version: v1
+              apiVersion: v1
               metadata:
                 name: "{{ osv_virt_vm_disk_claimname }}"
                 namespace: "{{ osv_vm_namespace }}"

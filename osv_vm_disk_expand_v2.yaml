@@ -38,7 +38,7 @@
          redhat.openshift.k8s:
             state: patched
             definition:
-              kind: persistentVolumeClaim
+              kind: PersistentVolumeClaim
               apiVersion: v1
               metadata:
                 name: "{{ osv_virt_vm_disk_claimname }}"

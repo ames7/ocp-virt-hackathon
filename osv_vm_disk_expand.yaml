@@ -48,12 +48,6 @@
                   requests:
                     storage: "{{ osv_vm_disk_size }}"
 
-#       - name: expand PVC claim
-#         community.kubevirt.kubevirt_pvc:
-#           name: "{{ osv_virt_vm_disk_claimname }}"
-#           namespace: "{{ osv_vm_namespace }}"
-#           size: "{{ osv_vm_disk_size }}"
-  
       
       delegate_to: localhost
       run_once: true   

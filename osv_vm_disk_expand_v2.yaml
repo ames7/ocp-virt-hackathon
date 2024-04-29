@@ -36,15 +36,17 @@
 
        - name: Expand {{ osv_virt_vm_disk_claimname }} on {{ vm_inventory_hostname }} to {{osv_vm_disk_size}}
          redhat.openshift.k8s:
-            kind: persistentVolumeClaim
-            name: "{{ osv_virt_vm_disk_claimname }}"
-            namespace: "{{ osv_vm_namespace }}"
-            api_version: v1
             state: patched
-            spec:
-              status:
-                capacity:
-                  storage: "{{ osv_vm_disk_size }}"
+            definition:
+              kind: persistentVolumeClaim
+              api_version: v1
+              metadata:
+                name: "{{ osv_virt_vm_disk_claimname }}"
+                namespace: "{{ osv_vm_namespace }}"
+              spec:
+                status:
+                  capacity:
+                    storage: "{{ osv_vm_disk_size }}"
 
 #       - name: expand PVC claim
 #         community.kubevirt.kubevirt_pvc:

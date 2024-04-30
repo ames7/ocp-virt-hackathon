@@ -12,9 +12,9 @@
     - block: 
        - name: Debug multilist
          ansible.builtin.debug:
-           var: multiple_targets
+          msg: 'List of Servers to be {{wantedstate}} {{ multiple_targets }}'
       
-       - name: Stop {{ osv_vm_hostname }} in {{ vm_namespace }} 
+       - name: Stopping Servers 
          redhat.openshift_virtualization.kubevirt_vm:
            state: present
            validate_certs: false
@@ -24,7 +24,7 @@
          loop: "{{ multiple_targets }}"
          when: wantedstate == "Stop" or wantedstate == "Reboot"
        
-       - name: Start {{ osv_vm_hostname}} in  {{ vm_namespace }} 
+       - name: Starting Servers
          redhat.openshift_virtualization.kubevirt_vm:
            state: present
            validate_certs: false

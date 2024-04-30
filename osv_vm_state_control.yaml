@@ -14,21 +14,23 @@
          ansible.builtin.debug:
            var: multiple_targets
       
-       - name: Stop {{ item.[0] }} in {{ vm_namespace }} 
+       - name: Stop {{ osv_vm_hostname }} in {{ vm_namespace }} 
          redhat.openshift_virtualization.kubevirt_vm:
            state: present
            validate_certs: false
            name: "{{ item.[0] }}"
            namespace: "{{ vm_namespace }}"
            running: false 
+         loop: "{{ multiple_targets }}"
          when: wantedstate == "Stop" or wantedstate == "Reboot"
        
-       - name: Start {{ item.[0] }} in  {{ vm_namespace }} 
+       - name: Start {{ osv_vm_hostname}} in  {{ vm_namespace }} 
          redhat.openshift_virtualization.kubevirt_vm:
            state: present
            validate_certs: false
            name: "{{ item.[0] }}"
            namespace: "{{ vm_namespace }}"
            running: true 
+         loop: "{{ multiple_targets }}"
          when: wantedstate == "Start" or wantedstate == "Reboot"
-      loop: "{{ multiple_targets }}"
+      

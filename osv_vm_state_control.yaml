@@ -29,7 +29,7 @@
            name: "{{ item[1] }}"
            namespace: "{{ item[0] }}"
            running: false 
-         loop: "{{ target_list }}"
+         loop: "{{ final_list }}"
          when: wantedstate == "Stop" or wantedstate == "Reboot"
        
        - name: Starting Servers
@@ -39,6 +39,6 @@
            name: "{{ item[1] }}"
            namespace: "{{ item[0] }}"
            running: true 
-         loop: "{{ target_list }}"
+         loop: "{{ final_list }}"
          when: wantedstate == "Start" or wantedstate == "Reboot"
       

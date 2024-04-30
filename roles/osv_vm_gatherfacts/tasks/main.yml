@@ -1,35 +1,34 @@
 - block:
-        - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
-          redhat.openshift_virtualization.kubevirt_vm_info:
-            name: "{{ osv_vm_hostname }}"
-            namespace: "{{ osv_vm_namespace }}" 
-          register: osv_virt_vm_info
-    
-        - name: Debug osv vm facts
-          ansible.builtin.debug:
-            var: osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
-            verbosity: 1
-        - name: Debug ocp vm facts
-          ansible.builtin.debug:
-            msg: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
-            verbosity: 1
-    # We can define specific if we want to narrow it down
-        - name: Register facts of {{ vm_inventory_hostname }} to controller fact cache
-          ansible.builtin.set_fact:
-            osv_cfg_cpu_cores: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
-            osv_cfg_cpu_sockets: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
-            osv_cfg_memory: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
-            osv_cfg_disk0: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
-            cacheable: yes
-          delegate_to: "{{ vm_inventory_hostname }}"  
-          delegate_facts: true
-        - name: Your VM  {{ vm_inventory_hostname }} has the following SPECS
-          ansible.builtin.debug:
-            msg: 
-            - "CPU_SOCKETS: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
-            - "CPU_CORES: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
-            - "MEMORY: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
-            - "DISK0: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
-      
+    - name: Gather underlying facts from K8 definition file for {{ vm_inventory_hostname }}
+      redhat.openshift_virtualization.kubevirt_vm_info:
+        name: "{{ osv_vm_hostname }}"
+        namespace: "{{ osv_vm_namespace }}"
+      register: osv_virt_vm_info
+    - name: Debug osv vm facts
+      ansible.builtin.debug:
+        var: osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName']
+        verbosity: 1
+    - name: Debug ocp vm facts
+      ansible.builtin.debug:
+        msg: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
+        verbosity: 1
+     # We can define specific if we want to narrow it down
+    - name: Register facts of {{ vm_inventory_hostname }} to controller fact cache
+      ansible.builtin.set_fact:
+        osv_cfg_cpu_cores: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
+        osv_cfg_cpu_sockets: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
+        osv_cfg_memory: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
+        osv_cfg_disk0: "{{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
+        cacheable: yes
+      delegate_to: "{{ vm_inventory_hostname }}"  
+      delegate_facts: true
+    - name: Your VM  {{ vm_inventory_hostname }} has the following SPECS
+      ansible.builtin.debug:
+        msg:
+        - "CPU_SOCKETS: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['sockets'] }}"
+        - "CPU_CORES: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['cpu']['cores'] }}"
+        - "MEMORY: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['domain']['resources']['requests']['memory'] }}"
+        - "DISK0: {{ osv_virt_vm_info['resources'][0]['spec']['template']['spec']['volumes'][0]['persistentVolumeClaim']['claimName'] }}"
+   
   delegate_to: localhost 
   run_once: true 

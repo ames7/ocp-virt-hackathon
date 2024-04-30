@@ -4,22 +4,30 @@
   gather_facts: false
   become: false
   vars:
-     # vm_inventory_hostname
-     # vm_namespace
-  
-  
+    #osv_vm_namespace: "{{ vm_inventory_hostname | split ('-') | first }}"
+    #osv_vm_hostname: "{{ vm_inventory_hostname | split ('-') | last }}"
+    #wantedstate:  #Start,Stop,Reboot
+    #target_list:  # List of ansible inventory hostnames in a list
+
   tasks:
     - block: 
        - name: Debug multilist
          ansible.builtin.debug:
           msg: 'List of Servers to be {{wantedstate}} {{ target_list }}'
+
+       - name: Create list of servername and namespace for {{ wantedstate }}
+         ansible.builtin.set_fact:
+          final_list: "{{ target_list | map ('split','-') }}"
+       - name: Debug final_list
+         ansible.builtin.debug:
+          msg: " {{ final_list }} "   
       
        - name: Stopping Servers 
          redhat.openshift_virtualization.kubevirt_vm:
            state: present
            validate_certs: false
-           name: "{{ item }}"
-           namespace: "{{ vm_namespace }}"
+           name: "{{ item[1] }}"
+           namespace: "{{ item[0] }}"
            running: false 
          loop: "{{ target_list }}"
          when: wantedstate == "Stop" or wantedstate == "Reboot"
@@ -28,8 +36,8 @@
          redhat.openshift_virtualization.kubevirt_vm:
            state: present
            validate_certs: false
-           name: "{{ item }}"
-           namespace: "{{ vm_namespace }}"
+           name: "{{ item[1] }}"
+           namespace: "{{ item[0] }}"
            running: true 
          loop: "{{ target_list }}"
          when: wantedstate == "Start" or wantedstate == "Reboot"

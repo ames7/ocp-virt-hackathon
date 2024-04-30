@@ -9,6 +9,10 @@
   
   
   tasks:
+    - name: Debug multilist
+      ansible.builtin.debug:
+        var: multiple_targets
+   
     - name: Stop {{ vm_inventory_hostname }} in {{ vm_namespace }} 
       redhat.openshift_virtualization.kubevirt_vm:
         state: present
@@ -27,5 +31,3 @@
         running: true 
       when: wantedstate == "Start" or wantedstate == "Reboot"
              
- 
-  

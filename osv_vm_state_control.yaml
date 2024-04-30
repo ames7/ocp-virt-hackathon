@@ -20,7 +20,7 @@
         name: "{{ vm_inventory_hostname }}"
         namespace: "{{ vm_namespace }}"
         running: false 
-      loop: "{{ multiple_host }}"  
+      loop: "{{ multiple_targets }}"  
       when: wantedstate == "Stop" or wantedstate == "Reboot"
     
     - name: Start {{ vm_inventory_hostname }} in  {{ vm_namespace }} 
@@ -30,6 +30,6 @@
         name: "{{ vm_inventory_hostname }}"
         namespace: "{{ vm_namespace }}"
         running: true 
-      loop: "{{ multiple_host }}"
+      loop: "{{ multiple_targets }}"
       when: wantedstate == "Start" or wantedstate == "Reboot"
              
